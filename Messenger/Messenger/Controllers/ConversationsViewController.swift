@@ -13,7 +13,6 @@ class ConversationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DatabaseManager.shared.test()
     }
 
     override func viewDidAppear(_ animated: Bool) {
