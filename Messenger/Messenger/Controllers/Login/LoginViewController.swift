@@ -10,8 +10,11 @@ import FirebaseAuth
 import Firebase
 import FBSDKLoginKit
 import GoogleSignIn
+import JGProgressHUD
 
 class LoginViewController: UIViewController {
+    
+    private let spinner = JGProgressHUD(style: .dark)
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -92,7 +95,7 @@ class LoginViewController: UIViewController {
             guard let strongSelf = self else {
                 return
             }
-            
+            strongSelf.spinner.dismiss(animated: true)
             strongSelf.navigationController?.dismiss(animated: true)
         })
         
@@ -175,6 +178,8 @@ class LoginViewController: UIViewController {
                 return
         }
         
+        spinner.show(in: view, animated: true)
+        
         // Firebase Log In
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             guard authResult != nil, error == nil else {
@@ -233,10 +238,12 @@ extension LoginViewController: LoginButtonDelegate {
                                                          version: nil,
                                                          httpMethod: .get)
         
-        facebookRequest.start(completion: { _, result, error in
+        facebookRequest.start(completion: { [weak self] _, result, error in
             guard let result = result as? [String: Any], error == nil else {
                 return
             }
+            
+            guard let strongSelf = self else { return }
             
             guard let userName = result["name"] as? String,
                   let email = result["email"] as? String else {
@@ -259,6 +266,8 @@ extension LoginViewController: LoginButtonDelegate {
             
             let credential = FacebookAuthProvider.credential(withAccessToken: token)
             
+            strongSelf.spinner.show(in: strongSelf.view, animated: true)
+            
             FirebaseAuth.Auth.auth().signIn(with: credential, completion: { authResult, error in
                 guard authResult != nil, error == nil else {
                     return
@@ -274,8 +283,10 @@ extension LoginViewController {
     @objc func googleSignIn(sender: Any) {
         let clientId = FirebaseApp.app()?.options.clientID
         let signInConfig = GIDConfiguration(clientID: clientId!)
-        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
+        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { [weak self] user, error in
             guard error == nil else { return }
+            
+            guard let strongSelf = self else { return }
             
             guard let email = user?.profile?.email,
                   let firstName = user?.profile?.givenName,
@@ -299,6 +310,8 @@ extension LoginViewController {
             }
             let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                            accessToken: authentication.accessToken)
+            
+            strongSelf.spinner.show(in: strongSelf.view, animated: true)
             
             FirebaseAuth.Auth.auth().signIn(with: credential, completion: { authResult, error in
                 guard authResult != nil, error == nil else {
