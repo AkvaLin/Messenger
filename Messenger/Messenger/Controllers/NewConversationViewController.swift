@@ -60,6 +60,6 @@ class NewConversationViewController: UIViewController {
 extension NewConversationViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        <#code#>
+        
     }
 }

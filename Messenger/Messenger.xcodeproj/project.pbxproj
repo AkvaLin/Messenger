@@ -24,6 +24,7 @@
 		F67ADEDC2833934500D59B67 /* NewConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67ADEDB2833934500D59B67 /* NewConversationViewController.swift */; };
 		F67ADEDE2833935100D59B67 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67ADEDD2833935100D59B67 /* ProfileViewController.swift */; };
 		F67ADEE128339E5B00D59B67 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67ADEE028339E5B00D59B67 /* Extensions.swift */; };
+		F6B9F5D2284543420011135D /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B9F5D1284543420011135D /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		F67ADEDB2833934500D59B67 /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
 		F67ADEDD2833935100D59B67 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F67ADEE028339E5B00D59B67 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F6B9F5D1284543420011135D /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 				F67ADEBA283390ED00D59B67 /* SceneDelegate.swift */,
 				F67ADEE028339E5B00D59B67 /* Extensions.swift */,
 				F64D268128382F0C00982D3E /* DatabaseManager.swift */,
+				F6B9F5D1284543420011135D /* StorageManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				F67ADEBB283390ED00D59B67 /* SceneDelegate.swift in Sources */,
 				F62E9C43283ACA8F002AC51F /* ChatViewController.swift in Sources */,
 				F67ADED72833931200D59B67 /* PhotoViewerViewController.swift in Sources */,
+				F6B9F5D2284543420011135D /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

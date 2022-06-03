@@ -23,8 +23,14 @@ struct Sender: SenderType {
 
 class ChatViewController: MessagesViewController {
 
+    private let selfSender = Sender(photoURL: "", senderId: "1", displayName: "Joe Smith")
+    private var messages = [Message]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        messages.append(Message(sender: selfSender, messageId: "1", sentDate: Date(), kind: .text("Some text")))
+        messages.append(Message(sender: selfSender, messageId: "1", sentDate: Date(), kind: .text("Another text")))
         
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
@@ -34,14 +40,14 @@ class ChatViewController: MessagesViewController {
 
 extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
     func currentSender() -> SenderType {
-        <#code#>
+        return selfSender
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        <#code#>
+        return messages[indexPath.section]
     }
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        <#code#>
+        return messages.count
     }
 }
